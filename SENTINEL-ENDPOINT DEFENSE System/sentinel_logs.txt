@@ -1,0 +1,5 @@
+[2026-02-10 03:49:38] [INFO] Registry Watchdog thread started.
+[2026-02-10 03:49:38] [INFO] Honeytoken Watchdog thread started.
+[2026-02-10 03:49:38] [INFO] Honeytoken generated: backup_passwords_2005.txt
+[2026-02-10 03:51:51] [CRITICAL] HONEYTOKEN BREACHED! File accessed: backup_passwords_2005.txt
+[2026-02-10 03:52:16] [INFO] System shutdown initiated by user.
