@@ -1,22 +1,30 @@
-# 🎭 Project 32: Obfuscation & Evasion (FUD Payload)
+# ⚠️ LEGAL DISCLAIMER
 
-**Focus:** Antivirus Evasion, Cryptography (XOR), Polymorphism, Python Dynamic Execution
+**HU:** Ez az eszköz kizárólag **saját rendszerek tesztelésére** vagy a tulajdonos írásos engedélyével rendelkező hálózatokon használható. A szoftver oktatási céllal készült. A szerző (Paczok Norisz) elhárít minden felelősséget a jogellenes használatért vagy károkért.
+
+**EN:** This tool is for **educational purposes and authorized testing only**. The creator (Paczok Norisz) assumes no liability for misuse or any damage caused by this program.
 
 ---
 
-## 📌 Overview
-Ez a projekt egy **Payload Builder** (Kód-generáló) eszközt valósít meg, amelynek célja a statikus vírusirtó elemzések (Static Analysis) kijátszása. A script egy egyszerű, de hatékony **XOR titkosítást** és **Base64 kódolást** alkalmaz, hogy a rosszindulatú kódot (payload) felismerhetetlen adathalmazzá alakítsa.
+# 🎭 Project 32: Payload Obfuscator (AV Evasion)
 
-A generált "Stub" (Hordozó) fájl a lemezen ártalmatlannak tűnik, és csak futás közben, a memóriában fejti vissza és hajtja végre az eredeti utasításokat.
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square)
+![Technique](https://img.shields.io/badge/Technique-XOR%2FBase64-orange?style=flat-square)
+![Category](https://img.shields.io/badge/Category-Defense_Evasion-red?style=flat-square)
 
-## ⚙️ Features
-* **Polymorphic Builder:** Minden generáláskor véletlenszerű (Random) titkosítókulcsot használ, így a kimeneti fájl hash lenyomata mindig más (Signature Evasion).
-* **XOR Encryption:** A payload bájtjainak maszkolása a kulccsal.
-* **Fileless Execution:** A visszafejtett kód soha nem íródik ki a merevlemezre; a Python `exec()` függvénye közvetlenül a memóriában (RAM) futtatja le.
-* **Static Evasion:** Mivel a forráskódban nem szerepelnek gyanús kulcsszavak (pl. `ctypes`, `subprocess`, `socket`), a Defender statikus motorja nem jelez.
+## 📌 Áttekintés (Overview)
+Ez a projekt az **Obfuscation (Kódzavarás)** technikáit demonstrálja. A cél a biztonsági szoftverek (AV/EDR) kijátszása a kártékony payload (pl. shellcode) olvashatatlanná tételével. A program Base64 kódolást és XOR titkosítást alkalmaz, hogy elrejtse a kód valódi szándékát a statikus elemzők elől.
 
-## 🛠 Usage
-1. **Payload Generálása:**
-   Nyisd meg a `payload_builder.py`-t, és írd be a kívánt Python kódot a `payload_code` változóba. Ezután futtasd a buildert:
-   ```bash
-   python payload_builder.py
+## 🛠️ Funkciók
+* **📦 Multi-Layer Encoding:** Base64 és XOR kombinált használata.
+* **🔑 Custom XOR Key:** Egyedi kulcs generálása a titkosításhoz.
+* **📝 Payload Generation:** Futtatható Python stub generálása, amely a memóriában dekódolja önmagát.
+
+## ⚙️ Technikai Részletek
+* **Nyelv:** Python 3.x
+* **Algoritmus:** Rolling XOR + Base64
+* **Cél:** Signature-based detection (Aláírás alapú védelem) megkerülése.
+
+## 🚀 Használat
+```bash
+python payload_builder.py
