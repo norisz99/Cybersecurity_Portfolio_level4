@@ -1,23 +1,30 @@
-# 🔓 Project 31: Privilege Escalation (UAC Bypass)
+# ⚠️ LEGAL DISCLAIMER
 
-**Focus:** User Account Control (UAC), Registry Manipulation, Fodhelper Technique, Admin Rights
+**HU:** Ez az eszköz kizárólag **saját rendszerek tesztelésére** vagy a tulajdonos írásos engedélyével rendelkező hálózatokon használható. A szoftver oktatási céllal készült. A szerző (Paczok Norisz) elhárít minden felelősséget a jogellenes használatért vagy károkért.
+
+**EN:** This tool is for **educational purposes and authorized testing only**. The creator (Paczok Norisz) assumes no liability for misuse or any damage caused by this program.
 
 ---
 
-## 📌 Overview
-Ez a modul a **Privilege Escalation** (Jogosultság Kiterjesztés) egyik legismertebb technikáját, a "Fodhelper Bypass"-t demonstrálja. A cél a rendszergazdai (High Integrity) jogosultság megszerzése anélkül, hogy a felhasználónak megjelenne a figyelmeztető UAC ("Engedélyezi-e...") ablak.
+# 👑 Project 31: UAC Bypass (Privilege Escalation)
 
-A script kihasználja a Windows `fodhelper.exe` (Features on Demand Helper) binárisának automatikus jogemelési tulajdonságát és a Registry-ből történő parancsvégrehajtási sérülékenységét.
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square)
+![Technique](https://img.shields.io/badge/Technique-Registry_Hijacking-red?style=flat-square)
+![Category](https://img.shields.io/badge/Category-PrivEsc-red?style=flat-square)
 
-## ⚙️ Features
-* **Silent Elevation:** A script adminisztrátori jogokkal indul újra felhasználói beavatkozás nélkül.
-* **Registry Injection:** A `HKCU\Software\Classes\ms-settings\Shell\Open\command` kulcs manipulálása.
-* **Proof of Concept:** Sikeres támadás esetén a script létrehoz egy bizonyíték fájlt (`norisz_proof.txt`) a védett `C:\Windows` rendszerkönyvtárban, ahová csak Adminisztrátorok írhatnak.
-* **Auto-Cleanup:** A támadás után a script törli a Registry bejegyzéseket a nyomok eltüntetése érdekében.
+## 📌 Áttekintés (Overview)
+Ez az eszköz a **Privilege Escalation** (Jogosultság-emelés) egyik legismertebb formáját, a **UAC (User Account Control) Bypass** technikát mutatja be. A program kihasználja a Windows `fodhelper.exe` megbízható folyamatának sérülékenységét, hogy rendszergazdai jogokkal futtasson parancsokat a felhasználó jóváhagyása nélkül.
 
-## 🛠 Usage
-Windows környezetben futtatandó.
+## 🛠️ Funkciók
+* **🔓 Silent Elevation:** Rendszergazdai jogok szerzése felugró ablak (prompt) nélkül.
+* **📂 Registry Hijacking:** A `HKCU\Software\Classes\ms-settings\Shell\Open\command` kulcs manipulálása.
+* **🚀 Fodhelper Exploit:** A Windows beépített eszközének felhasználása a támadáshoz (Living off the Land).
 
-1. **Indítás:**
-   ```bash
-   python uac_bypass.py
+## ⚙️ Technikai Részletek
+* **Nyelv:** Python 3.x
+* **Módszer:** Fileless UAC Bypass (Registry alapú)
+* **Veszélyességi szint:** Magas (High Integrity Level szerzése)
+
+## 🚀 Használat
+```bash
+python uac_bypass.py
