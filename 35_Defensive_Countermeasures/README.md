@@ -1,38 +1,22 @@
-# 🛡️ Project 35: Windows Defensive Countermeasures
+# 🛡️ Project 35: Defensive Countermeasures (Honeypots)
 
-**Focus:** Blue Team, Endpoint Detection & Response (EDR), Registry Monitoring, Honeytokens, File Integrity Monitoring (FIM)
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square)
+![Technique](https://img.shields.io/badge/Technique-Deception-green?style=flat-square)
+![Category](https://img.shields.io/badge/Category-Blue_Team-blue?style=flat-square)
 
----
+## 📌 Áttekintés (Overview)
+Ez a projekt a **Deception Technology** (Megtévesztéses Védelem) alapjait mutatja be. Olyan csapdákat (Honeyfile, Registry Sentry) hoz létre, amelyek riasztják a védőket, ha egy támadó vagy zsarolóvírus megpróbálja módosítani őket.
 
-## 📌 Overview
-Ez a projekt a **Level 4** támadó eszközeinek (Persistence, Credential Dumping) ellenszere. A cél demonstrálni, hogyan detektálhatóak a Windows rendszereken végrehajtott behatolások valós időben, Python alapú megfigyelő eszközökkel.
+## 🛠️ Funkciók
+* **🍯 Honeyfile Monitor:** Hamis fájlokat ("csali dokumentumokat") helyez el, és figyeli a hozzáféréseket. Ha valaki megnyitja, az riasztást generál.
+* **🛡️ Registry Sentry:** Védi a kritikus rendszerkulcsokat (pl. AutoRun), és azonnal jelez, ha egy malware perzisztenciát próbál beállítani.
+* **🔔 Real-time Alerting:** Azonnali visszajelzés a behatolási kísérletekről.
 
-A modul két védelmi koncepciót valósít meg:
-1.  **Registry Sentry:** A rendszerautomatizmusok (Persistence) figyelése.
-2.  **Honeytoken Trap:** A bizalmas adatokhoz való illetéktelen hozzáférés (Data Exfiltration) detektálása.
+## ⚙️ Technikai Részletek
+* **Nyelv:** Python 3.x
+* **API:** `watchdog` (File monitoring), `winreg` (Registry monitoring)
+* **Felhasználás:** Korai detektálás (Early Warning System).
 
-## 🛠 Tools
-
-### 1. Registry Sentry (`registry_sentry.py`)
-Ez a script egy EDR (Endpoint Detection and Response) ágens egyszerűsített modellje.
-* **Működés:** Másodpercenként ellenőrzi a `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` kulcsot.
-* **Detektálás:** Összehasonlítja a jelenlegi állapotot egy bázisállapottal (Baseline). Ha új bejegyzést talál (pl. a *Project 30* malware-ét), azonnal riasztást küld.
-* **Használat:** Folyamatosan fut a háttérben.
-
-### 2. Honeyfile Monitor (`honeyfile_monitor.py`)
-Ez a script a "Deception Technology" (Megtévesztéses Védelem) elvét alkalmazza.
-* **Működés:** Létrehoz egy csali fájlt (`secret_passwords.txt`), amely vonzó célpont a támadók számára.
-* **Detektálás:** Figyeli a fájl "Last Access Time" (Utolsó hozzáférés) metaadatát.
-* **Riasztás:** Ha a *Project 33* (vagy egy hacker) megpróbálja elolvasni a fájlt, a script azonnal jelzi a behatolást.
-
-## ⚔️ Red vs. Blue Simulation
-Hogyan teszteljük a védelmet?
-
-1.  **A Védő indítása:** Indítsd el a `registry_sentry.py`-t egy terminálban.
-2.  **A Támadó indítása:** Egy másik terminálban futtasd a `../30_Persistence_Mechanisms/persistence_toolkit.py`-t.
-3.  **Eredmény:** A Védő scriptnek azonnal észlelnie kell az új Registry bejegyzést, és felugró ablakkal jeleznie a blokkolást/riasztást.
-
----
-
-## ⚠️ Jogi Nyilatkozat (Disclaimer)
-A kódok oktatási célokat szolgálnak, bemutatva a kiberbiztonsági védekezés alapelveit.
+## 🚀 Használat
+```bash
+python honeyfile_monitor.py
