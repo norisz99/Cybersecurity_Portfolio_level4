@@ -1,21 +1,30 @@
-# ⚓ Project 30: Persistence Mechanisms
+# ⚠️ LEGAL DISCLAIMER
 
-**Focus:** Post-Exploitation, Windows Registry (winreg), Startup Folder, Python Scripting
+**HU:** Ez az eszköz kizárólag **saját rendszerek tesztelésére** vagy a tulajdonos írásos engedélyével rendelkező hálózatokon használható. A szoftver oktatási céllal készült. A szerző (Paczok Norisz) elhárít minden felelősséget a jogellenes használatért vagy károkért.
+
+**EN:** This tool is for **educational purposes and authorized testing only**. The creator (Paczok Norisz) assumes no liability for misuse or any damage caused by this program.
 
 ---
 
-## 📌 Overview
-Ez a projekt egy **Persistence** (Tartósság) eszközt valósít meg, amely demonstrálja, hogyan képes egy program "túlélni" a rendszer újraindítását. A script két klasszikus technikát alkalmaz, hogy felhasználói (User) jogosultsági szinten beépüljön a Windows indítási folyamatába, biztosítva a kód automatikus lefutását minden bejelentkezéskor.
+# 🧛 Project 30: Persistence Mechanisms Toolkit
 
-## ⚙️ Features
-* **Registry Persistence:** A `winreg` könyvtár segítségével bejegyzést hoz létre a `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` kulcsban.
-* **Startup Folder Injection:** A script másolatot készít magáról a felhasználó Indítópult (Startup) mappájába.
-* **Stealth (Álcázás):** A Registry-ben és a Startup mappában is ártalmatlan névvel (`SystemUpdate_Check.py`) jelenik meg, hogy elkerülje az átlagos felhasználó gyanúját.
-* **Cleanup Mechanism:** Beépített funkció a tesztelés utáni nyomok (Registry kulcsok és fájlok) automatikus eltávolítására.
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square)
+![Library](https://img.shields.io/badge/Lib-WinReg-yellow?style=flat-square)
+![Category](https://img.shields.io/badge/Category-APT_Simulation-red?style=flat-square)
 
-## 🛠 Usage
-A scriptet Windows környezetben (CMD vagy PowerShell) kell futtatni. A program interaktív menüvel rendelkezik.
+## 📌 Áttekintés (Overview)
+Ez a projekt a **Perzisztencia (Persistence)** technikáit demonstrálja Windows környezetben. A kiberbiztonságban ez a fázis biztosítja, hogy a bejutás után a hozzáférés akkor is megmaradjon, ha a felhasználó újraindítja a gépet vagy kijelentkezik.
 
-1. **Futtatás:**
-   ```bash
-   python persistence_toolkit.py
+## 🛠️ Funkciók
+* **🗝️ Registry Manipulation:** Automatikus indítókulcs (`Run` key) létrehozása a Windows Registry-ben.
+* **📅 Scheduled Tasks:** Időzített feladatok létrehozása a háttérben (a leggyakoribb malware technika).
+* **🕵️ Stealth Mode:** A perzisztencia elrejtése a feladatkezelő elől (szimuláció).
+
+## ⚙️ Technikai Részletek
+* **Nyelv:** Python 3.x
+* **Könyvtárak:** `winreg` (Registry hozzáférés), `os` (Parancssori utasítások)
+* **Célpont:** Windows OS (Registry & Task Scheduler)
+
+## 🚀 Használat
+```bash
+python persistence_toolkit.py
